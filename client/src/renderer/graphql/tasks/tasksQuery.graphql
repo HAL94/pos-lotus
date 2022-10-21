@@ -1,0 +1,9 @@
+query Tasks {  
+  tasks {
+    id
+    title
+    created
+    updated
+    isComplete    
+  }
+}

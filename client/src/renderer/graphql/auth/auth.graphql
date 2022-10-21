@@ -1,0 +1,20 @@
+mutation Login($loginInput: CredentialsInput!) {
+  login(LoginInput: $loginInput) {
+    message
+    success
+  }
+}
+
+query Me {
+  me {
+    success
+    user 
+  }
+}
+
+query Logout {
+  logout {
+    success
+    message
+  }
+}
