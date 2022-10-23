@@ -21,10 +21,10 @@ const Sidebar: React.FC = () => {
   const activeClass = 'bg-primary text-white rounded-2xl';
 
   return (
-    <div className="flex flex-col z-10 left-0 top-0 bottom-0 px-3 py-7 text-center border-r shadow-md overflow-x-hidden min-h-screen">
+    <div className="flex flex-col z-10 left-0 top-0 bottom-0 px-3 py-7 text-center border-r shadow-md overflow-x-hidden min-h-screen max-w-[20%]">
       <img
         src={AppLogo}
-        alt="Gentle"
+        alt="Lotus"
         width={90}
         height={90}
         className="mx-auto"
@@ -54,7 +54,9 @@ const Sidebar: React.FC = () => {
                     marginY: 1,
                   }}
                   className={`${
-                    route.pathname === routeItem.path ? activeClass : ''
+                    route.pathname === routeItem.path
+                      ? activeClass
+                      : ''
                   }`}
                 >
                   <Link to={routeItem.path}>

@@ -1,0 +1,23 @@
+query GetProductsByCategory($catId: Float!) {
+  productsByCategory(catId: $catId) {
+    id
+    name
+    arName
+    description
+    image
+    price
+    sellingPrice
+  }
+}
+
+query GetProducts {
+  products {
+    id
+    name
+    arName
+    description
+    image
+    price
+    sellingPrice
+  }
+}

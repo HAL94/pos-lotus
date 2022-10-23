@@ -1,7 +1,9 @@
-import { Task } from '../modules/tasks/task.entity';
+import { Category } from '../modules/categories/category.entity';
+import { Product } from '../modules/products/product.entity';
 import { User } from '../modules/user/user.entity';
 
 export { User } from '../modules/user/user.entity';
-export { Task } from '../modules/tasks/task.entity';
+export { Category } from '../modules/categories/category.entity';
+export { Product } from '../modules/products/product.entity';
 
-export default [Task, User];
+export default [Category, User, Product];

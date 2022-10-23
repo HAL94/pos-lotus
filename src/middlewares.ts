@@ -1,12 +1,10 @@
 import { AuthChecker, MiddlewareFn } from 'type-graphql';
-// import express from 'express';
+
 import { AUTH_NAMES, decryptToken } from './modules/auth/utils';
 import { User } from './entities';
-// type TContext = Record<'req', express.Request> & Record<'res', express.Response>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const LogAccess: MiddlewareFn<any> = ({ context }, next) => {
-  //   const username: string = context?.username || 'guest';  
   return next();
 };
 

@@ -5,19 +5,17 @@ import withAuth from 'renderer/modules/shared/hoc/with-user';
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row min-h-screen">
       <Sidebar />
       <Container
         disableGutters
         component="main"
         maxWidth={false}
         sx={{
-          pt: 0,
-          pb: 4,
-          pl: 5,
-          pr: 5,
           width: '100%',
           backgroundColor: '#f9f9f9',
+          height: '100vh',
+          minWidth: '80%',
         }}
       >
         <Outlet />

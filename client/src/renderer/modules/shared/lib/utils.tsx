@@ -5,6 +5,16 @@ import { MdTrendingUp } from 'react-icons/md';
 import * as uuid from 'uuid';
 import { Divider } from '@mui/material';
 
+type Null = null;
+type VoidFunc = () => void;
+type NullOrVoidFunc = Null | VoidFunc;
+
+export const IDLE = 'IDLE';
+export const PENDING = 'PENDING';
+export const REJECTED = 'REJECTED';
+export const FULFILLED = 'FULFILLED';
+
+
 export const routes = [
   {
     path: '/',
@@ -38,10 +48,6 @@ export const routes = [
   },
 ];
 
-type Null = null;
-type VoidFunc = () => void;
-type NullOrVoidFunc = Null | VoidFunc;
-
 export interface CustomMenuItem {
   isDivider: boolean;
   name: string;
@@ -49,6 +55,12 @@ export interface CustomMenuItem {
   onClick: NullOrVoidFunc;
   component: () => JSX.Element;
 }
+
+export const CategoryDisplayType = {
+  List: 'List',
+  Slider: 'Slider',
+};
+
 export const configureItemMenuList = (
   itemConfigList: { title: string; onClick: NullOrVoidFunc; itemIcon: any }[]
 ): CustomMenuItem[] => {

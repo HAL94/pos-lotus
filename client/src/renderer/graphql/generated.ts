@@ -14,6 +14,25 @@ export type Scalars = {
   UserPayload: any;
 };
 
+export type Category = {
+  __typename?: 'Category';
+  created: Scalars['String'];
+  id: Scalars['Int'];
+  image: Scalars['String'];
+  title: Scalars['String'];
+  updated: Scalars['String'];
+};
+
+export type CreateProductInput = {
+  arName: Scalars['String'];
+  catId: Scalars['Float'];
+  description: Scalars['String'];
+  image: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  sellingPrice: Scalars['Float'];
+};
+
 export type CredentialsInput = {
   password: Scalars['String'];
   username: Scalars['String'];
@@ -39,15 +58,22 @@ export type MeResponse = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createTask: Task;
+  createCategory: Category;
+  createProduct: Product;
   login: LoginResponse;
   refreshToken: RefreshResponse;
   register: RegisterResponse;
 };
 
 
-export type MutationCreateTaskArgs = {
+export type MutationCreateCategoryArgs = {
+  image: Scalars['String'];
   title: Scalars['String'];
+};
+
+
+export type MutationCreateProductArgs = {
+  productInput: CreateProductInput;
 };
 
 
@@ -60,11 +86,32 @@ export type MutationRegisterArgs = {
   RegisterInput: CredentialsInput;
 };
 
+export type Product = {
+  __typename?: 'Product';
+  arName: Scalars['String'];
+  category?: Maybe<Category>;
+  created: Scalars['String'];
+  description: Scalars['String'];
+  id: Scalars['String'];
+  image: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  sellingPrice: Scalars['Float'];
+  updated: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
+  categories: Array<Category>;
   logout: LogoutResponse;
   me: MeResponse;
-  tasks: Array<Task>;
+  products: Array<Product>;
+  productsByCategory: Array<Product>;
+};
+
+
+export type QueryProductsByCategoryArgs = {
+  catId: Scalars['Float'];
 };
 
 export type RefreshResponse = {
@@ -77,15 +124,6 @@ export type RegisterResponse = {
   __typename?: 'RegisterResponse';
   message: Scalars['String'];
   success: Scalars['Boolean'];
-};
-
-export type Task = {
-  __typename?: 'Task';
-  created: Scalars['String'];
-  id: Scalars['Int'];
-  isComplete: Scalars['Boolean'];
-  title: Scalars['String'];
-  updated: Scalars['String'];
 };
 
 export type LoginMutationVariables = Exact<{
@@ -105,13 +143,27 @@ export type LogoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LogoutQuery = { __typename?: 'Query', logout: { __typename?: 'LogoutResponse', success: boolean, message: string } };
 
-export type TasksQueryVariables = Exact<{ [key: string]: never; }>;
+export type CategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: number, title: string, created: string, updated: string, isComplete: boolean }> };
+export type CategoriesQuery = { __typename?: 'Query', categories: Array<{ __typename?: 'Category', id: number, title: string, created: string, updated: string, image: string }> };
+
+export type GetProductsByCategoryQueryVariables = Exact<{
+  catId: Scalars['Float'];
+}>;
+
+
+export type GetProductsByCategoryQuery = { __typename?: 'Query', productsByCategory: Array<{ __typename?: 'Product', id: string, name: string, arName: string, description: string, image: string, price: number, sellingPrice: number }> };
+
+export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: string, name: string, arName: string, description: string, image: string, price: number, sellingPrice: number }> };
 
 
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CredentialsInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"LoginInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
 export const MeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"user"}}]}}]}}]} as unknown as DocumentNode<MeQuery, MeQueryVariables>;
 export const LogoutDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Logout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<LogoutQuery, LogoutQueryVariables>;
-export const TasksDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Tasks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tasks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"created"}},{"kind":"Field","name":{"kind":"Name","value":"updated"}},{"kind":"Field","name":{"kind":"Name","value":"isComplete"}}]}}]}}]} as unknown as DocumentNode<TasksQuery, TasksQueryVariables>;
+export const CategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"created"}},{"kind":"Field","name":{"kind":"Name","value":"updated"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]}}]} as unknown as DocumentNode<CategoriesQuery, CategoriesQueryVariables>;
+export const GetProductsByCategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProductsByCategory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"catId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"productsByCategory"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"catId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"catId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"arName"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"sellingPrice"}}]}}]}}]} as unknown as DocumentNode<GetProductsByCategoryQuery, GetProductsByCategoryQueryVariables>;
+export const GetProductsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProducts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"products"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"arName"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"sellingPrice"}}]}}]}}]} as unknown as DocumentNode<GetProductsQuery, GetProductsQueryVariables>;
