@@ -4,6 +4,7 @@ import { FaClipboardList, FaUsers } from 'react-icons/fa';
 import { MdTrendingUp } from 'react-icons/md';
 import * as uuid from 'uuid';
 import { Divider } from '@mui/material';
+import { IconType } from 'react-icons/lib';
 
 type Null = null;
 type VoidFunc = () => void;
@@ -13,7 +14,6 @@ export const IDLE = 'IDLE';
 export const PENDING = 'PENDING';
 export const REJECTED = 'REJECTED';
 export const FULFILLED = 'FULFILLED';
-
 
 export const routes = [
   {
@@ -47,6 +47,12 @@ export const routes = [
     id: 'link_settings',
   },
 ];
+export interface Route {
+  path: string;
+  Icon: IconType;
+  title: string;
+  id: string;
+};
 
 export interface CustomMenuItem {
   isDivider: boolean;

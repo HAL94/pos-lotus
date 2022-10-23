@@ -13,7 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const ProductItem: React.FC<any> = ({ name, arName, description, image, sellingPrice, onItemClick }) => {
   return (
-    <Item onClick={onItemClick} className='max-w-[200px]'>
+    <Item onClick={onItemClick} className='max-w-[200px] max-h-[200px]'>
       <Box flexDirection={"row"} sx={{ p: 2 }}>
         <img src={image} width={50} alt={name} className='block m-0 float-left' />
         <Box flexDirection="column" className='max-w-inherit'>

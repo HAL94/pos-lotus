@@ -45,10 +45,12 @@ const ProductListing: React.FC<Props> = ({ currentCat }) => {
   //grid-rows-4
   //auto-rows-[200px] auto-cols-[minmax(200px, _1fr)]
   return (
-    <div className="grid gap-4 grid-rows-4 grid-flow-col max-w-full overflow-x-auto p-3 h-[calc(1037px-260px)]">
-      {products?.map((product: any) => (
-        <ProductItem key={product.id} {...product} />
-      ))}
+    <div className="grid gap-4 grid-rows-auto max-w-full max-h-[calc(1037px-260px)] h-auto">
+      <div className='grid gap-3 grid-rows-4 grid-flow-col overflow-x-auto p-3'>
+        {products?.map((product: any) => (
+          <ProductItem key={product.id} {...product} />
+        ))}
+      </div>
       {/* <div>{JSON.stringify(products)}</div> */}
     </div>
   );

@@ -1,12 +1,14 @@
 import Container from '@mui/material/Container';
 import { Outlet } from 'react-router-dom';
 import Sidebar from 'renderer/modules/shared/components/Sidebar/Sidebar';
+import TemporaryDrawer from 'renderer/modules/shared/components/TempDrawer/TempDrawer';
 import withAuth from 'renderer/modules/shared/hoc/with-user';
 
 const MainLayout: React.FC = () => {
   return (
     <div className="flex flex-row min-h-screen">
       <Sidebar />
+
       <Container
         disableGutters
         component="main"

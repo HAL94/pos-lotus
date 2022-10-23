@@ -1,7 +1,7 @@
 import { IconButton } from '@mui/material';
 
 interface IconButtonProps {
-  onClick: () => void;
+  onClick: (args?: any) => void | JSX.Element;
   IconComponent: any;
   iconProps: { src?: string; size?: number };
   buttonText: string;

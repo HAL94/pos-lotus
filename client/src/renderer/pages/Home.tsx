@@ -11,12 +11,12 @@ function Home() {
   }, [currentCat])
   return (
     <div className="flex flex-row items-center justify-between h-full">
-      <div className="z-0 w-[79%] h-full p-3">
+      <div className="z-0 w-[70%] h-full p-3">
         <Navbar />
         <CategoryDisplay onCatSelect={(cat) => setCurrentCat(cat)} selectedCat={currentCat} displayType={'Slider'} />
         <ProductListing currentCat={currentCat} />
       </div>
-      <div className="w-[20%] px-3 py-5 bg-white h-full border-l shadow-md">
+      <div className="w-[30%] px-3 py-5 bg-white h-full border-l shadow-md">
         <Billing />
       </div>
     </div>
