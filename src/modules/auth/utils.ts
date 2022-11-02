@@ -73,15 +73,15 @@ export const sendAuthCookies = (
     httpOnly: true,    
     path: '/',
     expires: atExpiration,
-    sameSite: 'none',
-    secure: true,    
+    // sameSite: 'none',
+    // secure: true,    
   });
   sendCookie(res, AUTH_NAMES.REFRESH_TOKEN_KEY, refreshToken, {
     httpOnly: true,    
     expires: rtExpiration,
-    sameSite: 'none',
     path: '/',
-    secure: true,    
+    // sameSite: 'none',
+    // secure: true,    
   });
   sendCookie(
     res,
@@ -91,8 +91,8 @@ export const sendAuthCookies = (
       httpOnly: false,
       path: '/',
       expires: atExpiration,
-      sameSite: 'none',
-      secure: true,      
+      // sameSite: 'none',
+      // secure: true,      
     },
   );
 };

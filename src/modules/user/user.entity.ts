@@ -4,9 +4,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Bill } from '../billing/bill.entity';
 
 @Entity('users')
 @ObjectType()
@@ -32,4 +34,7 @@ export class User extends BaseEntity {
 
   @Column('int', { default: 0 })
     tokenVersion!: number;
+
+  @OneToMany(() => Bill, (bill: Bill) => bill.cashier)
+    bills!: Bill[];
 }

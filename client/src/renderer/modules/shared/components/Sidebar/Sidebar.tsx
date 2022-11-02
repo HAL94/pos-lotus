@@ -14,7 +14,7 @@ import { BiLogOut } from 'react-icons/bi';
 import { useLogout } from 'renderer/modules/auth/hooks';
 
 import { routes } from '../../lib/utils';
-import TemporaryDrawer from '../TempDrawer/TempDrawer';
+import TemporarySidenavDrawer from '../TempSidenavDrawer/TempSidenavDrawer';
 import AppLogo from '../UI/AppLogo/AppLogo';
 interface Props {
   className?: string;
@@ -27,7 +27,7 @@ const Sidebar: React.FC<Props> = ({ className }) => {
 
   return (
     <>
-      <TemporaryDrawer className='inline lg:hidden' routes={routes} />
+      <TemporarySidenavDrawer className='inline lg:hidden absolute top-[31px] left-[6px] z-10' routes={routes} />
       <div className="hidden lg:flex lg:flex-col z-10 left-0 top-0 bottom-0 px-3 py-7 text-center border-r shadow-md overflow-x-hidden min-h-screen max-w-[20%]">
         <AppLogo width={90} height={90} />
         <nav aria-label="main sidebar" className="px-3">

@@ -1,7 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import { Avatar } from '@mui/material';
+import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
 import { Stack } from '@mui/system';
 import EnFlag from 'renderer/assets/en_flag.svg';
 import { CgProfile } from 'react-icons/cg';
@@ -10,8 +10,11 @@ import SimpleMenuList from '../UI/SimpleMenuList/SimpleMenuList';
 import IconButtonComponent from '../Button/IconButtonComponent/IconButtonComponent';
 import { configureItemMenuList } from '../../lib/utils';
 import PrimaryTextField from '../UI/PrimaryTextField/PrimaryTextField';
-
-const Navbar = () => {
+import { FaMoneyBillAlt } from 'react-icons/fa';
+interface Props {
+  onBillingClick: () => void;
+}
+const Navbar: React.FC<Props> = ({ onBillingClick }) => {
   const navBarProfileButtonOptions = configureItemMenuList([
     {
       title: 'Profile',
@@ -60,10 +63,15 @@ const Navbar = () => {
   ]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar
         position="static"
-        sx={{ height: 64, background: 'transparent', boxShadow: 'none' }}
+        sx={{
+          height: 64,
+          background: 'transparent',
+          boxShadow: 'none',
+          paddingLeft: 2,
+        }}
       >
         <Toolbar sx={{ padding: 5 }}>
           <PrimaryTextField />
@@ -72,6 +80,17 @@ const Navbar = () => {
             direction="row"
             sx={{ alignItems: 'center', marginLeft: '40px' }}
           >
+            <div className="lg:hidden">
+              <IconButton
+                onClick={onBillingClick}
+                aria-label="Billing"
+                aria-controls="menu-appbar-billing-control"
+                aria-haspopup="true"
+              >
+                <FaMoneyBillAlt />
+              </IconButton>
+            </div>
+
             <SimpleMenuList
               ButtonComponent={IconButtonComponent}
               buttonProps={{

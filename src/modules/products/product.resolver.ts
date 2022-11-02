@@ -66,7 +66,7 @@ export default class ProductResolver {
       const category = await Category.findOneBy({ id: product.categoryId });
       //   console.log('category', category);
       if (!category) {
-        throw new Error('Could not create product, wrong cat Id');
+        throw new Error('Could not complete product resolver operation, wrong cat Id');
       }
       return category;
     } catch (error) {

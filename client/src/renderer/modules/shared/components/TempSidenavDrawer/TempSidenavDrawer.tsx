@@ -20,7 +20,7 @@ interface Props {
   routes: Route[];
 }
 
-const TemporaryDrawer: React.FC<Props> = ({ className, routes }) => {
+const TemporarySidenavDrawer: React.FC<Props> = ({ className, routes }) => {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -86,4 +86,4 @@ const TemporaryDrawer: React.FC<Props> = ({ className, routes }) => {
   );
 };
 
-export default TemporaryDrawer;
+export default TemporarySidenavDrawer;

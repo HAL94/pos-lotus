@@ -5,13 +5,16 @@ import { REJECTED } from 'renderer/modules/shared/lib/utils';
 import ProductItem from '../UI/ProductItem/ProductItem';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Product from 'renderer/modules/shared/interfaces/product.interface';
 
 interface Props {
   currentCat: any;
+  onAddProduct: (product: Product) => void;
 }
 
-const ProductListing: React.FC<Props> = ({ currentCat }) => {
+const ProductListing: React.FC<Props> = ({ currentCat, onAddProduct }) => {
   const [products, setProducts] = useState<any>(null);
+
   const {
     getProductsByCat,
     loading: prodsByCatLoading,
@@ -26,6 +29,7 @@ const ProductListing: React.FC<Props> = ({ currentCat }) => {
   } = useGetAllProducts({
     onSuccess: (data: any) => setProducts(data),
   });
+
   useEffect(() => {
     if (currentCat) {
       getProductsByCat(currentCat);
@@ -40,15 +44,13 @@ const ProductListing: React.FC<Props> = ({ currentCat }) => {
   if (prodsByCatStatus === REJECTED || allProdsStatus === REJECTED) {
     return <Alert severity="error">Something went wrong</Alert>;
   }
-  // grid-flow-col
-  // grid-rows-auto grid-flow-col auto-cols-min auto-rows-max
-  //grid-rows-4
-  //auto-rows-[200px] auto-cols-[minmax(200px, _1fr)]
+  //[257px_minmax(257px,_1fr)_minmax(257px,auto)]
+
   return (
-    <div className="grid gap-4 grid-rows-auto max-w-full max-h-[calc(1037px-260px)] h-auto">
-      <div className='grid gap-3 grid-rows-4 grid-flow-col overflow-x-auto p-3'>
+    <div className="grid gap-4 grid-rows-auto max-w-full flex-1 overflow-y-auto ">
+      <div className='grid gap-3 grid-rows-3 grid-flow-col overflow-x-auto p-3'>
         {products?.map((product: any) => (
-          <ProductItem key={product.id} {...product} />
+          <ProductItem onItemClick={() => onAddProduct(product)} key={product.id} {...product} />
         ))}
       </div>
       {/* <div>{JSON.stringify(products)}</div> */}

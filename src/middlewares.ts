@@ -18,12 +18,13 @@ export const customAuthChecker: AuthChecker<any> = async (
   const { req } = context;
   let atPayload = null; //access_token payload  
   try {
-    atPayload = decryptToken(req, AUTH_NAMES.ACCESS_TOKEN_KEY, process.env.ACCESS_TOKEN_SECRET!);    
+    atPayload = decryptToken(req, AUTH_NAMES.ACCESS_TOKEN_KEY, process.env.ACCESS_TOKEN_SECRET!);       
   } catch (error) {
     console.log('an error decrypting token', error);
     return false;
   }
 
+  console.log('atPayload', atPayload);
   if (!atPayload) {
     return false;
   }
@@ -33,6 +34,8 @@ export const customAuthChecker: AuthChecker<any> = async (
   if (!user) {
     return false;
   }
+
+  req.user = user;
 
   return true;
 };

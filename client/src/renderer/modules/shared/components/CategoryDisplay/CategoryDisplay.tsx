@@ -14,7 +14,6 @@ const CategoryDisplay: React.FC<Props> = ({
   selectedCat,
   onCatSelect,
 }) => {
-  console.log('displayType', displayType);
   const { loading, error, data } = useQuery(CategoriesDocument);
   return (
     <div className="my-6">

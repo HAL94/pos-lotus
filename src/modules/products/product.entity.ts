@@ -6,9 +6,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { BillItem } from '../billing/bill-item.entity';
 import { Category } from '../categories/category.entity';
 
 @Entity()
@@ -38,11 +40,11 @@ export class Product extends BaseEntity {
   @Field(() => String)
     description!: string;
 
-  @Column()
+  @Column({ type: 'float', default: 0 })
   @Field(() => Number)
     price!: number;
 
-  @Column()
+  @Column({ type: 'float', default: 0 })
   @Field(() => Number)
     sellingPrice!: number;
 
@@ -56,4 +58,7 @@ export class Product extends BaseEntity {
   @ManyToOne(() => Category, (cat) => cat.products)
   @JoinColumn({ name: 'categoryId' })
     category!: Category;
+
+  @OneToMany(() => BillItem, (bi) => bi.product)
+    billItem!: BillItem;
 }

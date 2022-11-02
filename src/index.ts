@@ -26,6 +26,7 @@ export async function bootstrap() {
 
     app.use(express.urlencoded({ extended: false }));
     // app.use(cors(corsOptions));
+    app.set('trust proxy', 1);
     app.use(cookieParser());
 
     const httpServer = http.createServer(app);
@@ -44,7 +45,7 @@ export async function bootstrap() {
         scalarsMap: [{ type: UserPayload, scalar: UserPayloadScalar }],
         authChecker: customAuthChecker,
       }),
-      csrfPrevention: true,
+      csrfPrevention: false,
       plugins,
       context: ({ req, res }): Context => {
         return { req, res };
